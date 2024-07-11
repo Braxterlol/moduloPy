@@ -28,10 +28,10 @@ def main():
     connection = pika.BlockingConnection(pika.ConnectionParameters('url_rabbit'))
     channel = connection.channel()
 
-    # Asegúrate de que la cola exista
+    # la cola tiene q existir
     channel.queue_declare(queue='Nombre_de_la_cola')
 
-    # Escucha la cola
+    # consumir la cola
     channel.basic_consume(queue='Nombre_de_la_cola', on_message_callback=callback, auto_ack=False)
 
     print('Esperando mensajes...')
